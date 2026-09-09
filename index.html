@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Quality &amp; Training Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-dark:#063D3E;
+    --teal:#00A4A6;
+    --teal-light:#3FC1C2;
+    --teal-mist:#E1F5F5;
+    --ink:#182420;
+    --ink-soft:#5C6863;
+    --ink-faint:#8B958F;
+    --bg:#F6F8F7;
+    --card:#FFFFFF;
+    --line:#E3E7E4;
+    --line-strong:#CFD6D2;
+    --amber:#C98A2C;
+    --amber-soft:#FBF0DE;
+    --slate:#6B7280;
+    --slate-soft:#EEF0F2;
+    --gold:#B8892B;
+  }
+  *{box-sizing:border-box;}
+  html[lang="ar"] body{
+    font-family:'Tajawal', system-ui, -apple-system, sans-serif;
+  }
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Libre Franklin', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.45;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#063D3E 0%,#00898B 55%,#00A4A6 100%);
+    padding:52px 0 34px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-160px; left:-140px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10), rgba(255,255,255,0) 70%);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    top:-60px; left:-220px;
+    width:340px;height:340px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .hero .wrap{position:relative;z-index:1;}
+  .eyebrow-row{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:14px;
+    margin-bottom:14px;
+  }
+  .langtoggle{
+    font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    color:#fff;
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.28);
+    border-radius:20px;
+    padding:5px 14px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .langtoggle:hover{background:rgba(255,255,255,0.24);}
+  .eyebrow{
+    text-align:right;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.62);
+    margin-bottom:0;
+  }
+  .hero h1{
+    font-size:38px;
+    font-weight:800;
+    letter-spacing:-0.015em;
+    color:#fff;
+    margin:0 0 6px;
+    max-width:640px;
+    line-height:1.15;
+  }
+  .hero .tagline{
+    font-size:14.5px;
+    font-weight:600;
+    color:rgba(255,255,255,0.72);
+    margin:0 0 18px;
+  }
+  .hero p.lede{
+    font-size:15.5px;
+    color:rgba(255,255,255,0.78);
+    max-width:600px;
+    margin:0 0 34px;
+    font-weight:500;
+  }
+  .hero-stats{
+    display:flex;
+    gap:0;
+    border-top:1px solid rgba(255,255,255,0.16);
+    padding-top:22px;
+  }
+  .hstat{
+    padding:0 28px;
+    border-right:1px solid rgba(255,255,255,0.16);
+  }
+  .hstat:first-child{padding-left:0;}
+  .hstat:last-child{border-right:none;}
+  .hstat .num{
+    font-size:26px;
+    font-weight:800;
+    color:#fff;
+    line-height:1;
+    letter-spacing:-0.01em;
+  }
+  .hstat .label{
+    margin-top:6px;
+    font-size:12.5px;
+    font-weight:600;
+    color:rgba(255,255,255,0.62);
+  }
+
+  /* ---------- TABS ---------- */
+  .tabbar{
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+  .tabbar-inner{
+    display:flex;
+    gap:30px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .tabbar-inner::-webkit-scrollbar{display:none;}
+  .tabbtn{
+    background:none;border:none;cursor:pointer;
+    font-family:inherit;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink-faint);
+    padding:16px 0 14px;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease,border-color .15s ease;
+  }
+  .tabbtn.on{color:var(--ink);border-bottom-color:var(--teal);}
+  .tabbtn:hover{color:var(--ink);}
+
+  /* ---------- CONTENT ---------- */
+  .content{padding:34px 0 80px;}
+  .panel{display:none;}
+  .panel.on{display:block;}
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:4px;
+  }
+  .section-head h2{
+    font-size:21px;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .badge-tag{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11.5px;
+    font-weight:800;
+    letter-spacing:0.02em;
+    color:#fff;
+    background:var(--ink);
+    padding:3px 9px;
+    border-radius:6px;
+  }
+  .section-desc{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:6px 0 26px;
+    max-width:640px;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+  }
+  .search{flex:1;min-width:200px;}
+  .search input{
+    width:100%;
+    font-family:inherit;
+    font-size:14px;
+    padding:10px 14px;
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    background:var(--card);
+    color:var(--ink);
+  }
+  .search input:focus{outline:none;border-color:var(--teal);}
+  .chip-group{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{
+    font-family:inherit;font-size:12.5px;font-weight:600;
+    padding:7px 13px;border-radius:20px;
+    border:1px solid var(--line-strong);
+    background:var(--card);color:var(--ink-soft);cursor:pointer;
+    white-space:nowrap;
+  }
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  /* cards */
+  .card-list{display:flex;flex-direction:column;gap:12px;}
+  .rcard{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 20px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .rcard.flagged{border-style:dashed;border-color:var(--amber);}
+  .rcard-main{flex:1;min-width:0;}
+  .rcard-title-row{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-bottom:5px;
+  }
+  .rcard-title{font-size:15.5px;font-weight:700;}
+  .status-pill{
+    font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;
+  }
+  .status-pill.active{background:var(--teal-mist);color:var(--teal);}
+  .status-pill.hold{background:var(--amber-soft);color:var(--amber);}
+  .status-pill.done{background:var(--slate-soft);color:var(--slate);}
+  .status-pill.unk{background:#F2F2F2;color:var(--ink-faint);}
+  .rcard-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;max-width:680px;}
+  .rcard-meta{
+    margin-top:10px;
+    display:flex;gap:14px;align-items:center;
+    font-size:12px;color:var(--ink-faint);font-weight:600;
+  }
+  .rcard-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-faint);}
+  .rcard-side{
+    display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;
+  }
+  .openbtn{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:inherit;font-size:13px;font-weight:700;
+    color:var(--teal);
+    background:var(--teal-mist);
+    border:1px solid transparent;
+    padding:8px 14px;
+    border-radius:20px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .openbtn:hover{background:var(--teal);color:#fff;}
+  .hint{font-size:12.5px;color:var(--ink-faint);margin-top:22px;}
+
+  /* leaderboard */
+  .lb-row{
+    display:grid;
+    grid-template-columns:28px 150px 1fr 64px;
+    align-items:center;
+    gap:16px;
+    padding:12px 16px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:8px;
+    cursor:pointer;
+  }
+  .lb-rank{font-size:13px;font-weight:800;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
+  .lb-rank.g{color:var(--gold);}
+  .lb-name{font-size:14.5px;font-weight:700;}
+  .lb-bar-track{height:9px;background:var(--slate-soft);border-radius:5px;overflow:hidden;}
+  .lb-bar-fill{height:100%;background:var(--teal);border-radius:5px;}
+  .lb-row.top .lb-bar-fill{background:var(--gold);}
+  .lb-score{text-align:right;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .lb-detail{display:none;padding:4px 16px 14px;font-size:13px;color:var(--ink-soft);gap:24px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 10px 10px;margin-top:-14px;margin-bottom:8px;}
+  .lb-detail.open{display:flex;}
+  .lb-detail .metric b{color:var(--ink);font-weight:700;}
+  .lb-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:14px;}
+  .sort-group{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);}
+  select{font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);border:1px solid var(--line-strong);border-radius:8px;padding:7px 10px;background:var(--card);}
+  .methodology{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-faint);max-width:680px;}
+
+  @media (max-width:640px){
+    .hero h1{font-size:29px;}
+    .hero-stats{flex-wrap:wrap;row-gap:16px;}
+    .hstat{border-right:none;padding:0 20px 0 0;}
+    .rcard{flex-direction:column;}
+    .rcard-side{flex-direction:row;width:100%;justify-content:flex-end;}
+    .lb-row{grid-template-columns:22px 100px 1fr 46px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <div class="eyebrow" id="eyebrowText"></div>
+      <button class="langtoggle" id="langToggleBtn"></button>
+    </div>
+    <h1 id="heroTitle"></h1>
+    <p class="tagline" id="heroTagline"></p>
+    <p class="lede" id="heroLede"></p>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tabbar-inner" id="tabbarHost"></div>
+  </div>
+</div>
+
+<div class="wrap content">
+  <div id="panelsHost"></div>
+</div>
+
+<script>
+const TRACKER = [
+  {key:"qa", tag:"QA", group:"Support Quality — QA", desc:"Scoring forms, response logs, OKR feeds and reference docs the QA process runs on.", items:[
+    {n:1,name:"QA Support (Form)",type:"Google Form",status:"done",date:"—",notes:"The original form used for team auditing since day 1 (Scorecard vol.1). Superseded — the team now relies on the new QA Audit (Technical Support) form.",nameAr:"نموذج دعم الجودة",notesAr:"النموذج الأساسي المستخدم لتقييم الفريق منذ اليوم الأول (سكوركارد الإصدار الأول). تم استبداله — الفريق الآن يعتمد على نموذج تدقيق الجودة الجديد (الدعم الفني).",typeAr:"نموذج جوجل",href:"https://docs.google.com/forms/d/e/1FAIpQLSciZO7c5nUiy25mvp3dNhKXmR5gtIr-rxpvFAPPp-oCNi4E0Q/viewform?pli=1&pli=1&pli=1"},
+    {n:2,name:"QA Support (Responses)",type:"Google Sheet",status:"done",date:"8/16/2025",notes:"Core QA evaluation form responses covering support conversations, Nov 2024 to Sept 2026. Superseded — the team now relies on the New QA Scorecard (Technical Support) responses sheet.",nameAr:"ردود نموذج دعم الجودة",notesAr:"الشيت الأساسي لردود نموذج تقييم الجودة، يغطي محادثات الدعم من نوفمبر 2024 حتى سبتمبر 2026. تم استبداله — الفريق الآن يعتمد على شيت ردود سكوركارد الجودة الجديد (الدعم الفني).",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1q6CIJ0zeEplTmSRJjtLxRA0iKE2Fjc9UY8d3anuHr88"},
+    {n:3,name:"Team Auditing — Queue",type:"Google Form",status:"hold",date:"4/12/2026",notes:"Intake form for queue audit feedback (TL follow-up / team attitude / comment / insight). Not introduced officially; on hold due to AI.",nameAr:"تدقيق الفريق — قائمة الانتظار",notesAr:"نموذج استقبال ملاحظات تدقيق قائمة الانتظار (متابعة قائد الفريق / سلوك الفريق / تعليق / ملاحظة). لم يتم تفعيله رسميًا؛ متوقف مؤقتًا بسبب الذكاء الاصطناعي.",typeAr:"نموذج جوجل",href:"https://docs.google.com/forms/d/15wdFSj7-GEByWAZDQ21JG4ES45cTrVLmaWxkVTc693I"},
+    {n:4,name:"Team Auditing — Queue (Responses)",type:"Google Sheet",status:"hold",date:"4/5/2026",notes:"Response log for the audit form above — record of every observation with link and date.",nameAr:"تدقيق الفريق — قائمة الانتظار (الردود)",notesAr:"سجل ردود نموذج التدقيق أعلاه — يحتوي على كل ملاحظة مع الرابط والتاريخ.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1Qgmn8T9OHZv6TDbXnthqzYtHWHCBAODUYROwbV1-OEM"},
+    {n:5,name:"CSAT Deep-dive",type:"Google Sheet",status:"hold",date:"3/3/2026",notes:"Initiative for CSAT deep-dive with root cause and liability. Stopped, not continued this year.",nameAr:"تحليل معمّق لـ CSAT",notesAr:"مبادرة لتحليل CSAT بعمق مع تحديد السبب الجذري والمسؤولية. تم إيقافها ولم تُستكمل هذا العام.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1kLI1QtydKwFk09G8wAgiEWO0EDAUQXWf2c7xfhfc_dc/edit?gid=520114059"},
+    {n:6,name:"OKR update",type:"Google Sheet",status:"active",date:"8/16/2025",notes:"Quality numbers feeding the team OKR sheet — the main reference sheet.",nameAr:"تحديث الـ OKR",notesAr:"أرقام الجودة اللي بتتغذى بيها شيت OKR الخاص بالفريق — الشيت المرجعي الأساسي.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/10fgVjHyT81FiDOxWgyB7pU14te0J-8gam2-knf50GFU/edit?gid=0"},
+    {n:7,name:"Daily–Monthly evaluation",type:"Google Form",status:"active",date:"—",notes:"Evaluation form used by the Team Lead and supervisor for daily operations.",nameAr:"التقييم اليومي – الشهري",notesAr:"نموذج تقييم يستخدمه قائد الفريق والمشرف للعمليات اليومية.",typeAr:"نموذج جوجل",href:"https://docs.google.com/forms/d/1pVZ07tzlJB5wnMCzk10OCvoiWYsiq_kIvGWcQU61czE/edit?usp=forms_home&ouid=114580351497057695768&ths=true"},
+    {n:8,name:"Daily–Monthly evaluation (Responses)",type:"Google Sheet",status:"active",date:"8/18/2025",notes:"Response log for the audit form above — record of every observation with link and date.",nameAr:"التقييم اليومي – الشهري (الردود)",notesAr:"سجل ردود نموذج التقييم أعلاه — يحتوي على كل ملاحظة مع الرابط والتاريخ.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1JsXuQ0jISABY2b9_jy1PBJ7DttM2I3xJ_Vv-FwQtpPw/edit?resourcekey=&gid=1802577755"},
+    {n:9,name:"Performance Tracking &amp; Analytics improvements",type:"Google Slides",status:"done",date:"8/6/2025",notes:"Proposed 8/6/2025 — most approved, except PMO Tracker, Coaching Tracking Sheet and Advanced Agent Performance Tracking. Remaining items (automation, new score system, dynamic sheets, filtering, MOM dashboard) are live.",nameAr:"تحسينات متابعة الأداء والتحليلات",notesAr:"تم اقتراحها بتاريخ 6/8/2025 — تمت الموافقة على معظمها، ما عدا متابع PMO، شيت متابعة التدريب، ومتابعة أداء الموظفين المتقدمة. باقي العناصر (الأتمتة، نظام التقييم الجديد، الشيتات الديناميكية، الفلترة، داشبورد MOM) شغالة فعليًا.",typeAr:"جوجل سلايدز",href:"https://docs.google.com/presentation/d/1ZB2fxquoa2sLhpmfpajA1SbVNmuHi-FIBQhy5ITns4I/edit?usp=sharing"},
+    {n:10,name:"Training Session material",type:"Google Doc",status:"active",date:"9/7/2026",notes:"Training resource log for the team — Home Screen, Settings, Add Product, Category Management, Stock Count, Stock Operation, Inventory Transfer — with source links and assigned tasks.",nameAr:"مواد الجلسات التدريبية",notesAr:"سجل مصادر التدريب الخاص بالفريق — الشاشة الرئيسية، الإعدادات، إضافة منتج، إدارة الفئات، جرد المخزون، عمليات المخزون، تحويل المخزون — مع روابط المصادر والمهام المكلّف بها.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/1Ag3yv6EAsRTXnHhHReIgflLxCui9tqQzq7WNkKAUF3U/edit?userstoinvite=raghad.ibrahim%40rewaa.com&sharingaction=manageaccess&role=writer&tab=t.0"},
+    {n:11,name:"CS – QA Enhancements",type:"Google Doc",status:"active",date:"8/30/2025",notes:"Enhanced QA scoring attributes as requested — final version.",nameAr:"تحسينات الجودة لخدمة العملاء",notesAr:"معايير تقييم جودة محسّنة حسب المطلوب — النسخة النهائية.",typeAr:"مستند جوجل",href:"https://docs.google.com/spreadsheets/d/144s0tHY3c3pjirz2ki3wG52ooc4JWajrIRZbKOvY3wg/edit?gid=288118593"},
+    {n:12,name:"Trainee Evaluation",type:"Google Sheet",status:"active",date:"9/8/2026",notes:"Day-to-day evaluation sheet for new hires based on performance.",nameAr:"تقييم المتدربين",notesAr:"شيت تقييم يومي للموظفين الجدد بناءً على الأداء.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1xy9CQeATf1yXqhKpuY83nqvBj2Br3c1U-DUZtRqGY4A/edit?gid=594374537"},
+    {n:13,name:"QA Audit — Technical Support",type:"Google Form",status:"active",date:"9/9/2026",notes:"New enhanced internal QA form scoring Technical Support agents across Tickets, Calls and Chat on Open.cx — tracks performance, flags critical errors, guides coaching.",nameAr:"تدقيق الجودة — الدعم الفني",notesAr:"نموذج تدقيق جودة داخلي محسّن لتقييم موظفي الدعم الفني في التذاكر والمكالمات والمحادثات على Open.cx — بيتابع الأداء، وبيرصد الأخطاء الحرجة، وبيوجّه التدريب.",typeAr:"نموذج جوجل",href:"https://docs.google.com/forms/d/110AJ9e0SHxIlMCkD0WojiUHPN9uym9n9OHxYK3kXowY/edit"},
+    {n:14,name:"New QA Scorecard – Technical Support (Responses)",type:"Google Sheet",status:"active",date:"9/9/2026",notes:"New scorecard evaluation form responses covering support interactions in detail.",nameAr:"سكوركارد الجودة الجديد – الدعم الفني (الردود)",notesAr:"ردود نموذج تقييم السكوركارد الجديد، وبتغطي تفاصيل تفاعلات الدعم.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1lSY3IHORw5ek7rMEmeSEFJRiCnjfq-H1Tz_Jb9UoDxY/edit?usp=sharing"},
+    {n:15,name:"Tools access – support team",type:"Google Sheet",status:"active",date:"9/2/2026",notes:"Follow-up tracker for each team member's access per tool.",nameAr:"صلاحيات الأدوات – فريق الدعم",notesAr:"متابعة لصلاحيات كل عضو في الفريق على كل أداة.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1km2wo0Di0rjGHW8zyvf4qiI6fXWJ7FNP5gi-hMhJswA/edit?gid=0"},
+    {n:16,name:"OKRs Overview",type:"Google Sheet",status:"active",date:"9/6/2026",notes:"OKRs for the quarter, split into agent view and month view.",nameAr:"نظرة عامة على الـ OKRs",notesAr:"أهداف الربع مقسّمة لعرض حسب الموظف وعرض حسب الشهر.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1M7YPZnLxv4yGTRbQfXBpUEjoac91zn2ySZXCWqqc1Po/edit?usp=sharing"},
+    {n:17,name:"Rewaa Platform guide",type:"Google Doc",status:"active",date:"9/6/2026",notes:"Platform overview and knowledge bank.",nameAr:"دليل منصة رواء",notesAr:"نظرة عامة على المنصة وبنك المعرفة.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/1wWwnfUV1L_gX0WU_whoMMwGPgS9CztU-TsuCt007ETg/edit?usp=sharing"},
+    {n:18,name:"Workflow Ticket System",type:"—",status:"unk",date:"—",notes:"Entry incomplete in the source sheet — no type/status recorded yet.",flag:true,nameAr:"نظام تذاكر سير العمل",notesAr:"الإدخال ناقص في الشيت المصدر — لسه مفيش نوع أو حالة مسجّلة.",typeAr:"—"},
+  ]},
+  {key:"ai", tag:"AI", group:"Open AI", desc:"Everything that keeps the Rewaa AI assistant and Open.cx knowledge base accurate.", items:[
+    {n:19,name:"AI PMO 2026",type:"Google Sheet",status:"active",date:"8/17/2025",notes:"Tracker of open/completed AI knowledge articles (Rewaa AI) with status and ETA per article. Includes hidden sheets for older documentation.",nameAr:"إدارة مشاريع الذكاء الاصطناعي 2026",notesAr:"متابعة لمقالات المعرفة الخاصة بالذكاء الاصطناعي (Rewaa AI) المفتوحة والمكتملة، مع الحالة والموعد المتوقع لكل مقال. فيها شيتات مخفية للتوثيق القديم.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1tB8kbs5S3WLQjFVvnsvwYX4BLiY94RdTUDllXvcuqmc"},
+    {n:20,name:"AI Instructions Guide — OpenCX",type:"Google Doc",status:"done",date:"7/19/2025",notes:"Standards guide for modifying AI instructions (root cause analysis, no duplication, no contradiction) — bilingual EN/AR.",nameAr:"دليل تعليمات الذكاء الاصطناعي — Open.cx",notesAr:"دليل معايير لتعديل تعليمات الذكاء الاصطناعي (تحليل السبب الجذري، عدم التكرار، عدم التناقض) — ثنائي اللغة عربي/إنجليزي.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/1hElqmZKNE53Vtsven7yiuzKIYCdNDvAHlciOBtUhHIM"},
+    {n:21,name:"Rewaa ↔ OpenCX",type:"Google Sheet",status:"active",date:"8/12/2026",notes:"Log of AI agent issues on Open.cx (knowledge / assignment / closure) with comments from the OpenCX team.",nameAr:"رواء ↔ Open.cx",notesAr:"سجل مشاكل الذكاء الاصطناعي على Open.cx (المعرفة / التخصيص / الإغلاق) مع تعليقات فريق OpenCX.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1qVwrlKFq4j7Pw-Cg3PODO2s9LDzlEjAIh6DIMmSSNiQ"},
+    {n:22,name:"Intercom – OpenCX Migration",type:"Google Doc",status:"active",date:"8/17/2025",notes:"Tracking remaining migration gaps from Intercom to Open.cx (company hierarchy, metrics, migration) with ETA per item. Requested reports added.",nameAr:"الانتقال من Intercom إلى Open.cx",notesAr:"متابعة الفجوات المتبقية في الانتقال من Intercom لـ Open.cx (الهيكل التنظيمي، المقاييس، الانتقال) مع موعد متوقع لكل عنصر. تم إضافة التقارير المطلوبة.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/18djn8ItJeVXnfoW2ZUWqcFlKJsTbmf_MqUVcv60oESY"},
+    {n:23,name:"Open.cx User Guide – Customer Success (Vol.6)",type:"PDF",status:"active",date:"9/9/2026",notes:"User guide for Open.cx (Customer Success) — availability status, inbox filters, Zoho CRM widget, Jira widget integration and creation, macros, conversation transfers, internal notes, mentions. Updated from Vol.5.",nameAr:"دليل استخدام منصة Open.cx – نجاح العملاء (الإصدار 6)",notesAr:"دليل استخدام Open.cx لفريق نجاح العملاء — حالة التواجد، فلاتر الإنبوكس، ودجت Zoho CRM، ودجت Jira وربطه، الماكروز، تحويل المحادثات، الملاحظات الداخلية، والإشارات. محدّث من الإصدار الخامس.",typeAr:"PDF",href:"https://drive.google.com/file/d/1yZh5_kWC2Eu4p_zKUbdmgiz9lKqg5Cnh/view?usp=sharing"},
+  ]},
+  {key:"hw", tag:"HW", group:"Hardware Guide", desc:"References for every hardware type the team supports, plus pricing.", items:[
+    {n:24,name:"Hardware Support Guide",type:"Google Doc",status:"done",date:"9/1/2026",notes:"Main support-team reference for all hardware types (Windows/Android POS, printers, barcode scanners…).",nameAr:"دليل دعم الأجهزة",notesAr:"المرجع الأساسي لفريق الدعم لكل أنواع الأجهزة (أجهزة POS ويندوز/أندرويد، الطابعات، قارئات الباركود...).",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/1MiB2CtS_03Dddeln7zPnnFbkq9CKaQnTMUUUHGxhMCo"},
+    {n:25,name:"Hardware Support Chats Guide",type:"Google Sheet",status:"done",date:"9/7/2026",notes:"Step-by-step handling for each hardware contact scenario (shipping delays, missing shipments, SIM issues, waybills…).",nameAr:"دليل محادثات دعم الأجهزة",notesAr:"خطوات التعامل مع كل سيناريو تواصل خاص بالأجهزة (تأخير الشحن، الشحنات المفقودة، مشاكل الشرائح، بوليصات الشحن...).",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1Z3qvvrSmkzH0XWAVGeuEPD_x7AQ_adwKxAqT9iBRaHo"},
+    {n:26,name:"Available hardware prices",type:"Google Doc",status:"done",date:"8/30/2026",notes:"Added after the new rule that support agents issue invoices for hardware. Prices updated after a 50% addition.",nameAr:"أسعار الأجهزة المتاحة",notesAr:"تمت إضافته بعد القرار الجديد بإصدار فواتير للأجهزة من فريق الدعم. الأسعار محدّثة بعد إضافة 50%.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/105Tb5kRy0I36jcAwWV-pS6rTt0gP6TFe9t3T1vBDSX4/edit?tab=t.0"},
+  ]},
+  {key:"cc", tag:"CC", group:"Customer Communication Guide", desc:"Brand-voice guides, canned responses and the macro request pipeline.", items:[
+    {n:27,name:"Mobily SIM card guide",type:"Google Doc",status:"active",date:"8/18/2026",notes:"Following the switch of the free-internet SIM provider for Mazaya customers from STC. Covers activation, device scenarios and key FAQs.",nameAr:"دليل شريحة موبايلي",notesAr:"بعد تغيير مزوّد شريحة الإنترنت المجاني لعملاء مزايا من STC. يغطي التفعيل، سيناريوهات الأجهزة، والأسئلة الشائعة الأساسية.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/1_fJuL2o7dad_yeOLR-WR-5iHK2xe2ZdRr1fGaBRsiZQ/edit?tab=t.0"},
+    {n:28,name:"Customer Communication Guide (Technical Support)",type:"Google Doc",status:"active",date:"8/3/2026",notes:"Unifies Rewaa's brand image with customers, enhances professional communication, accurate resolution and SOP compliance toward quarterly goals.",nameAr:"دليل التواصل مع العملاء (الدعم الفني)",notesAr:"بيوحّد صورة رواء أمام العملاء، وبيعزّز التواصل الاحترافي، ودقة حل المشاكل، والالتزام بالـ SOP لتحقيق أهداف الربع.",typeAr:"مستند جوجل",href:"https://docs.google.com/document/d/1FoDy5V1h9V2reM6weIHZXqKPbzWCRHNdyJxnb_9vDsc"},
+    {n:29,name:"Canned responses",type:"Google Sheet",status:"active",date:"8/3/2026",notes:"Built with Khadija to reduce repetitive, unverified replies from the team.",nameAr:"الردود الجاهزة",notesAr:"اتبنى مع خديجة لتقليل الردود المتكررة وغير المتأكد منها من الفريق.",typeAr:"شيت جوجل",href:"https://docs.google.com/spreadsheets/d/1rnUH9_MxW3TWzqNzVJdiSH9AE3U1gHnpN2uBnJBQFGA/edit?usp=sharing"},
+    {n:30,name:"Macros / help-center edit requests",type:"Google Form",status:"active",date:"—",notes:"Intake for macro creation, article edits and macro updates. If Khadija is off, macros are created/edited directly and she's informed.",nameAr:"طلبات الماكروز / تعديل مركز المساعدة",notesAr:"استقبال طلبات إنشاء الماكروز وتعديل المقالات وتحديث الماكروز. لو خديجة مش موجودة، بيتم الإنشاء/التعديل مباشرة وإبلاغها بعدين.",typeAr:"نموذج جوجل",href:"https://docs.google.com/forms/d/e/1FAIpQLScjGvO_vnCWkFtphZ1yxLN1Ii1Yjh7IwyzLCtdvwKtnoYhn8A/viewform"},
+    {n:31,name:"SOP portal update",type:"—",status:"hold",date:"—",notes:"Updating SOPs on Slack to be reflected on the portal.",nameAr:"تحديث بوابة الـ SOP",notesAr:"تحديث الـ SOPs على Slack عشان تنعكس على البوابة.",typeAr:"—",href:"https://rewaa-cx-portal-frontend-3u9n.onrender.com/settings/"},
+  ]},
+  {key:"en", tag:"EN", group:"English Support Assessment Pack", desc:"The standalone English phone-readiness assessment built for the team.", items:[
+    {n:32,name:"English Support Assessment Pack (Dashboard)",type:"HTML Artifact",status:"done",date:"8/16/2025",notes:"Downloaded from Google Drive; saved as a Claude artifact for viewing.",nameAr:"حزمة تقييم الدعم الإنجليزي (الداشبورد)",notesAr:"تم تنزيلها من Google Drive؛ محفوظة كـ Claude artifact للعرض.",typeAr:"Artifact HTML",href:"https://drive.google.com/file/d/1aRrYxD0-dzlajSIBc_-aHSUYoMWmNpr7/view?usp=sharing"},
+  ]},
+];
+
+const LEADERBOARD = [
+  {rank:1,name:"Muhannad Almathlum",conv:2155,calls:1876,csat:94.1,convS:100.0,callsS:100.0,csatS:78.6,composite:92.86},
+  {rank:2,name:"Sultan Al-Anazi",conv:2154,calls:1707,csat:93.2,convS:99.9,callsS:89.8,csatS:73.6,composite:87.80},
+  {rank:3,name:"Asmaa Ahmed",conv:1938,calls:1314,csat:92.6,convS:85.0,callsS:66.2,csatS:70.3,composite:83.84},
+  {rank:4,name:"Hemat Mostafa",conv:1698,calls:1872,csat:89.3,convS:68.4,callsS:99.8,csatS:52.2,composite:73.44},
+  {rank:5,name:"Marwa Amin",conv:1915,calls:1207,csat:93.7,convS:83.4,callsS:59.8,csatS:76.4,composite:73.18},
+  {rank:6,name:"Ahmad Alamouri",conv:1781,calls:1185,csat:94.7,convS:74.1,callsS:58.5,csatS:81.9,composite:71.48},
+  {rank:7,name:"Eisa Alanzi",conv:1941,calls:1384,csat:89.8,convS:85.2,callsS:70.4,csatS:54.9,composite:70.19},
+  {rank:8,name:"Kholoud Khaled",conv:1892,calls:1358,csat:88.6,convS:81.8,callsS:68.9,csatS:48.4,composite:66.34},
+  {rank:9,name:"Abdullah Ahmed",conv:1449,calls:728,csat:98.0,convS:51.1,callsS:31.0,csatS:100.0,composite:60.71},
+  {rank:10,name:"Yahia Eltantawy",conv:1698,calls:989,csat:89.4,convS:68.4,callsS:46.7,csatS:52.7,composite:55.93},
+  {rank:11,name:"Shaima Ahmad",conv:1371,calls:1282,csat:88.2,convS:45.7,callsS:64.3,csatS:46.2,composite:52.05},
+  {rank:12,name:"Zaid Alkilani",conv:1329,calls:1033,csat:88.8,convS:42.8,callsS:49.3,csatS:49.5,composite:47.20},
+  {rank:13,name:"Esraa Tarek",conv:784,calls:396,csat:92.4,convS:5.1,callsS:11.1,csatS:69.2,composite:28.45},
+  {rank:14,name:"Roaa Alborini",conv:769,calls:964,csat:83.0,convS:4.0,callsS:45.2,csatS:17.6,composite:22.26},
+  {rank:15,name:"Yazan Al Sayyed",conv:711,calls:778,csat:79.8,convS:0.0,callsS:34.0,csatS:0.0,composite:11.34},
+  {rank:16,name:"Abrar Alahmed",conv:779,calls:212,csat:80.1,convS:4.7,callsS:0.0,csatS:1.6,composite:2.12},
+];
+
+const I18N = {
+  en:{
+    dir:"ltr", htmlLang:"en", toggleLabel:"العربية",
+    eyebrow:"Support Quality Ops — 2026",
+    title:"Quality &amp; Training Hub",
+    tagline:"Quality Assurance Team – Technical Support Team, Rewaa",
+    lede:"Every QA system, script, and reference file created — plus how the team scored in Q2.",
+    stats:{tracked:"Files tracked", active:"Active / ongoing", hold:"On hold", workstreams:"Workstreams", agents:"Agents scored (Q2)"},
+    groupName:{qa:"Support Quality — QA", ai:"Open AI", hw:"Hardware Guide", cc:"Customer Communication Guide", en:"English Support Assessment Pack", lb:"Q2 Leaderboard"},
+    groupDesc:{
+      qa:"Scoring forms, response logs, OKR feeds and reference docs the QA process runs on.",
+      ai:"Everything that keeps the Rewaa AI assistant and Open.cx knowledge base accurate.",
+      hw:"References for every hardware type the team supports, plus pricing.",
+      cc:"Brand-voice guides, canned responses and the macro request pipeline.",
+      en:"The standalone English phone-readiness assessment built for the team."
+    },
+    status:{active:"Active", hold:"On hold", done:"Completed", unk:"Unspecified"},
+    chip:{all:"All", active:"Active", hold:"On hold", done:"Completed"},
+    searchPlaceholder:"Search this workstream…",
+    updatedLabel:"Updated",
+    openBtn:"Open ↗",
+    hint:"\"Open ↗\" now links to each file's real Google Drive location. The one exception is \"Workflow Ticket System\", which has no link yet in the source sheet — that button falls back to the master tracker.",
+    noMatch:"No files match this filter.",
+    lbTitle:"Top Support Agents — Q2 2026 (Apr–Jun)",
+    lbDesc:"Composite score blends conversations replied to, calls answered, and CSAT — each normalized 0–100 across the 16-agent team, then averaged equally.",
+    sortLabel:"Sort by",
+    sortOptions:{composite:"Composite score", conv:"Conversations", calls:"Calls answered", csat:"CSAT %"},
+    methodology:"Composite score = equal-weighted average (⅓ each) of Conversations Replied To, Calls Answered, and CSAT, each min–max normalized 0–100 across the 16 agents. Source: “Q2 raw data” sheet (Intercom + 3CX exports). Click a row to see the underlying numbers.",
+    metricLabels:{conv:"Conversations", calls:"Calls answered", csat:"CSAT", composite:"Composite"},
+    csatSuffix:"%"
+  },
+  ar:{
+    dir:"rtl", htmlLang:"ar", toggleLabel:"English",
+    eyebrow:"عمليات جودة الدعم — 2026",
+    title:"مركز الجودة والتدريب",
+    tagline:"إعداد: قسم الجودة — فريق الدعم الفني | رواء",
+    lede:"كل نظام جودة وسكريبت وملف مرجعي تم إنشاؤه — وترتيب الفريق في الربع الثاني.",
+    stats:{tracked:"ملف متابَع", active:"نشط / مستمر", hold:"متوقف مؤقتًا", workstreams:"مسار عمل", agents:"موظف مُقيَّم (Q2)"},
+    groupName:{qa:"جودة الدعم — QA", ai:"الذكاء الاصطناعي (Open AI)", hw:"دليل الأجهزة", cc:"دليل التواصل مع العملاء", en:"حزمة تقييم الدعم بالإنجليزي", lb:"ترتيب الربع الثاني"},
+    groupDesc:{
+      qa:"نماذج التقييم وسجلات الردود وملفات الـ OKR والمراجع اللي عليها عملية الجودة.",
+      ai:"كل حاجة بتحافظ على دقة مساعد الذكاء الاصطناعي بتاع رواء وقاعدة معرفة Open.cx.",
+      hw:"مراجع لكل نوع أجهزة بيدعمها الفريق، بالإضافة للأسعار.",
+      cc:"أدلة صوت العلامة، الردود الجاهزة، وخط طلبات الماكروز.",
+      en:"تقييم الاستعداد للمكالمات بالإنجليزي المستقل اللي اتبنى للفريق."
+    },
+    status:{active:"نشط", hold:"متوقف مؤقتًا", done:"مكتمل", unk:"غير محدد"},
+    chip:{all:"الكل", active:"نشط", hold:"متوقف", done:"مكتمل"},
+    searchPlaceholder:"دوّري في مسار العمل ده…",
+    updatedLabel:"آخر تحديث",
+    openBtn:"افتح ↗",
+    hint:"زرار \"افتح\" دلوقتي بيوديكي على مكان الملف الحقيقي على Google Drive. الاستثناء الوحيد هو \"Workflow Ticket System\" اللي لسه معهوش رابط في الشيت المصدر — الزرار ده بيرجع للشيت الرئيسي بدلاً منه.",
+    noMatch:"مفيش ملفات مطابقة للفلتر ده.",
+    lbTitle:"أفضل موظفين الدعم — الربع الثاني 2026 (أبريل–يونيو)",
+    lbDesc:"النتيجة المركّبة بتجمع المحادثات المردود عليها، والمكالمات المُجابة، والـ CSAT — كل واحدة متطبّعة من 0 لـ100 على مستوى الـ16 موظف، وبعدين بيتوسطوا بالتساوي.",
+    sortLabel:"رتّب حسب",
+    sortOptions:{composite:"النتيجة المركّبة", conv:"المحادثات", calls:"المكالمات المُجابة", csat:"نسبة CSAT"},
+    methodology:"النتيجة المركّبة = متوسط بالتساوي (⅓ لكل عنصر) للمحادثات المردود عليها، والمكالمات المُجابة، والـ CSAT، كل واحدة متطبّعة 0–100 على مستوى الـ16 موظف. المصدر: شيت «Q2 raw data» (تصدير Intercom + 3CX). دوسي على أي صف عشان تشوفي الأرقام التفصيلية.",
+    metricLabels:{conv:"المحادثات", calls:"المكالمات المُجابة", csat:"CSAT", composite:"المركّبة"},
+    csatSuffix:"%"
+  }
+};
+
+let currentLang = "en";
+function t(){ return I18N[currentLang]; }
+
+function allItems(){ return TRACKER.flatMap(g => g.items.map(i => ({...i, group:g.group}))); }
+
+function parseDate(str){
+  if(!str || str==="—") return -Infinity;
+  const parts = str.split("/");
+  if(parts.length!==3) return -Infinity;
+  const m = parseInt(parts[0],10), d = parseInt(parts[1],10), y = parseInt(parts[2],10);
+  if(isNaN(m)||isNaN(d)||isNaN(y)) return -Infinity;
+  return new Date(y,m-1,d).getTime();
+}
+
+function sortedItems(items){
+  return [...items].sort((a,b)=> parseDate(b.date) - parseDate(a.date));
+}
+
+function renderHero(){
+  const s = t();
+  document.getElementById("eyebrowText").textContent = s.eyebrow;
+  document.getElementById("langToggleBtn").textContent = s.toggleLabel;
+  document.getElementById("heroTitle").innerHTML = s.title;
+  document.getElementById("heroTagline").textContent = s.tagline;
+  document.getElementById("heroLede").textContent = s.lede;
+}
+
+function renderHeroStats(){
+  const s = t();
+  const items = allItems();
+  const counts = {active:0,hold:0,done:0,unk:0};
+  items.forEach(i => counts[i.status]++);
+  document.getElementById("heroStats").innerHTML = `
+    <div class="hstat"><div class="num">${items.length}</div><div class="label">${s.stats.tracked}</div></div>
+    <div class="hstat"><div class="num">${counts.active}</div><div class="label">${s.stats.active}</div></div>
+    <div class="hstat"><div class="num">${counts.hold}</div><div class="label">${s.stats.hold}</div></div>
+    <div class="hstat"><div class="num">${TRACKER.length}</div><div class="label">${s.stats.workstreams}</div></div>
+    <div class="hstat"><div class="num">16</div><div class="label">${s.stats.agents}</div></div>
+  `;
+}
+
+let activeTab = "qa";
+const filterState = {}; // per-tab {status, search}
+TRACKER.forEach(g => filterState[g.key] = {status:"all", search:""});
+
+function renderTabs(){
+  const s = t();
+  const host = document.getElementById("tabbarHost");
+  const tabs = TRACKER.map(g => `<button class="tabbtn ${activeTab===g.key?'on':''}" data-tab="${g.key}">${s.groupName[g.key]}</button>`).join("");
+  host.innerHTML = tabs + `<button class="tabbtn ${activeTab==='lb'?'on':''}" data-tab="lb">${s.groupName.lb}</button>`;
+  host.querySelectorAll(".tabbtn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      activeTab = btn.dataset.tab;
+      renderTabs();
+      renderPanels();
+    });
+  });
+}
+
+function renderPanels(){
+  const s = t();
+  const host = document.getElementById("panelsHost");
+  if(activeTab === "lb"){
+    host.innerHTML = leaderboardPanelHTML();
+    wireLeaderboard();
+    return;
+  }
+  const g = TRACKER.find(tk => tk.key === activeTab);
+  const st = filterState[g.key];
+  const items = sortedItems(g.items).filter(i=>{
+    const statusOk = st.status==="all" || i.status===st.status;
+    const q = st.search.trim().toLowerCase();
+    const nameStr = (currentLang==='ar' && i.nameAr ? i.nameAr : i.name).toLowerCase();
+    const notesStr = (currentLang==='ar' && i.notesAr ? i.notesAr : i.notes).toLowerCase();
+    const searchOk = !q || nameStr.includes(q) || notesStr.includes(q);
+    return statusOk && searchOk;
+  });
+  const counts = {all:g.items.length,active:0,hold:0,done:0};
+  g.items.forEach(i=>{ if(counts[i.status]!==undefined) counts[i.status]++; });
+  const chipDefs = ["all","active","hold","done"];
+
+  host.innerHTML = `
+    <div class="section-head"><span class="badge-tag">${g.tag}</span><h2>${s.groupName[g.key]}</h2></div>
+    <p class="section-desc">${s.groupDesc[g.key]}</p>
+    <div class="controls">
+      <div class="search"><input type="text" id="searchInput" placeholder="${s.searchPlaceholder}" value="${st.search}"></div>
+      <div class="chip-group" id="chipGroup">
+        ${chipDefs.map(k=>`<button class="chip ${st.status===k?'on':''}" data-status="${k}">${s.chip[k]} · ${counts[k]}</button>`).join("")}
+      </div>
+    </div>
+    <div class="card-list">
+      ${items.map(i => `
+        <div class="rcard ${i.flag?'flagged':''}">
+          <div class="rcard-main">
+            <div class="rcard-title-row">
+              <span class="rcard-title">${currentLang==='ar' && i.nameAr ? i.nameAr : i.name}</span>
+              <span class="status-pill ${i.status}">${s.status[i.status]}</span>
+            </div>
+            <div class="rcard-desc">${currentLang==='ar' && i.notesAr ? i.notesAr : i.notes}</div>
+            <div class="rcard-meta"><span>${currentLang==='ar' && i.typeAr ? i.typeAr : i.type}</span><span class="dot"></span><span>${s.updatedLabel} ${i.date}</span></div>
+          </div>
+          <div class="rcard-side">
+            <a class="openbtn" href="${i.href || 'https://docs.google.com/spreadsheets/d/1cC_ad_GlZ3BrIazBTmh2aWFylhjHd4dWbE13fnabEJA/edit'}" target="_blank" rel="noopener" ${i.href ? '' : `title="${s.hint}"`}>${s.openBtn}</a>
+          </div>
+        </div>
+      `).join("") || `<p class="hint">${s.noMatch}</p>`}
+    </div>
+    <p class="hint">${s.hint}</p>
+  `;
+
+  document.getElementById("searchInput").addEventListener("input", e=>{
+    st.search = e.target.value;
+    renderPanels();
+    document.getElementById("searchInput").focus();
+    const val = document.getElementById("searchInput").value;
+    document.getElementById("searchInput").setSelectionRange(val.length, val.length);
+  });
+  document.getElementById("chipGroup").querySelectorAll(".chip").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      st.status = btn.dataset.status;
+      renderPanels();
+    });
+  });
+}
+
+let lbSort = "composite";
+function scoreFor(sortKey, row){
+  if(sortKey==="composite") return row.composite;
+  if(sortKey==="conv") return row.conv;
+  if(sortKey==="calls") return row.calls;
+  if(sortKey==="csat") return row.csat;
+}
+function leaderboardPanelHTML(){
+  const s = t();
+  return `
+    <div class="lb-head">
+      <div>
+        <div class="section-head"><span class="badge-tag">Q2</span><h2>${s.lbTitle}</h2></div>
+        <p class="section-desc" style="margin-top:6px;">${s.lbDesc}</p>
+      </div>
+      <div class="sort-group">
+        ${s.sortLabel}
+        <select id="sortSelect">
+          <option value="composite" ${lbSort==='composite'?'selected':''}>${s.sortOptions.composite}</option>
+          <option value="conv" ${lbSort==='conv'?'selected':''}>${s.sortOptions.conv}</option>
+          <option value="calls" ${lbSort==='calls'?'selected':''}>${s.sortOptions.calls}</option>
+          <option value="csat" ${lbSort==='csat'?'selected':''}>${s.sortOptions.csat}</option>
+        </select>
+      </div>
+    </div>
+    <div id="lbHost"></div>
+    <p class="methodology">${s.methodology}</p>
+  `;
+}
+function wireLeaderboard(){
+  document.getElementById("sortSelect").addEventListener("change", e=>{
+    lbSort = e.target.value;
+    renderLeaderboardRows();
+  });
+  renderLeaderboardRows();
+}
+function renderLeaderboardRows(){
+  const s = t();
+  const maxVal = Math.max(...LEADERBOARD.map(r=>scoreFor(lbSort,r)));
+  const sorted = [...LEADERBOARD].sort((a,b)=>scoreFor(lbSort,b)-scoreFor(lbSort,a));
+  const host = document.getElementById("lbHost");
+  host.innerHTML = "";
+  sorted.forEach((r, idx)=>{
+    const pct = (scoreFor(lbSort,r)/maxVal*100).toFixed(1);
+    const display = lbSort==="csat" ? r.csat.toFixed(1)+s.csatSuffix :
+                     lbSort==="composite" ? r.composite.toFixed(2) :
+                     scoreFor(lbSort,r);
+    const row = document.createElement("div");
+    row.className = "lb-row" + (idx<3?" top":"");
+    row.innerHTML = `
+      <div class="lb-rank ${idx<3?'g':''}">${idx+1}</div>
+      <div class="lb-name">${r.name}</div>
+      <div class="lb-bar-track"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
+      <div class="lb-score">${display}</div>
+    `;
+    const detail = document.createElement("div");
+    detail.className = "lb-detail";
+    detail.innerHTML = `
+      <div class="metric">${s.metricLabels.conv}: <b>${r.conv}</b> (${r.convS})</div>
+      <div class="metric">${s.metricLabels.calls}: <b>${r.calls}</b> (${r.callsS})</div>
+      <div class="metric">${s.metricLabels.csat}: <b>${r.csat.toFixed(1)}%</b> (${r.csatS})</div>
+      <div class="metric">${s.metricLabels.composite}: <b>${r.composite.toFixed(2)}</b></div>
+    `;
+    row.addEventListener("click", ()=> detail.classList.toggle("open"));
+    host.appendChild(row);
+    host.appendChild(detail);
+  });
+}
+
+function renderAll(){
+  document.documentElement.lang = t().htmlLang;
+  document.documentElement.dir = t().dir;
+  renderHero();
+  renderHeroStats();
+  renderTabs();
+  renderPanels();
+}
+
+document.getElementById("langToggleBtn").addEventListener("click", ()=>{
+  currentLang = currentLang === "en" ? "ar" : "en";
+  renderAll();
+});
+
+renderAll();
+</script>
+
+</body>
+</html>
