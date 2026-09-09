@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Quality &amp; Training Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-dark:#063D3E;
+    --teal:#00A4A6;
+    --teal-light:#3FC1C2;
+    --teal-mist:#E1F5F5;
+    --ink:#182420;
+    --ink-soft:#5C6863;
+    --ink-faint:#8B958F;
+    --bg:#F6F8F7;
+    --card:#FFFFFF;
+    --line:#E3E7E4;
+    --line-strong:#CFD6D2;
+    --amber:#C98A2C;
+    --amber-soft:#FBF0DE;
+    --slate:#6B7280;
+    --slate-soft:#EEF0F2;
+    --gold:#B8892B;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Libre Franklin', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.45;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#063D3E 0%,#00898B 55%,#00A4A6 100%);
+    padding:52px 0 34px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-160px; left:-140px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10), rgba(255,255,255,0) 70%);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    top:-60px; left:-220px;
+    width:340px;height:340px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .hero .wrap{position:relative;z-index:1;}
+  .eyebrow{
+    text-align:right;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.62);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:38px;
+    font-weight:800;
+    letter-spacing:-0.015em;
+    color:#fff;
+    margin:0 0 6px;
+    max-width:640px;
+    line-height:1.15;
+  }
+  .hero .tagline{
+    font-size:14.5px;
+    font-weight:600;
+    color:rgba(255,255,255,0.72);
+    margin:0 0 18px;
+  }
+  .hero p.lede{
+    font-size:15.5px;
+    color:rgba(255,255,255,0.78);
+    max-width:600px;
+    margin:0 0 34px;
+    font-weight:500;
+  }
+  .hero-stats{
+    display:flex;
+    gap:0;
+    border-top:1px solid rgba(255,255,255,0.16);
+    padding-top:22px;
+  }
+  .hstat{
+    padding:0 28px;
+    border-right:1px solid rgba(255,255,255,0.16);
+  }
+  .hstat:first-child{padding-left:0;}
+  .hstat:last-child{border-right:none;}
+  .hstat .num{
+    font-size:26px;
+    font-weight:800;
+    color:#fff;
+    line-height:1;
+    letter-spacing:-0.01em;
+  }
+  .hstat .label{
+    margin-top:6px;
+    font-size:12.5px;
+    font-weight:600;
+    color:rgba(255,255,255,0.62);
+  }
+
+  /* ---------- TABS ---------- */
+  .tabbar{
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+  .tabbar-inner{
+    display:flex;
+    gap:30px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .tabbar-inner::-webkit-scrollbar{display:none;}
+  .tabbtn{
+    background:none;border:none;cursor:pointer;
+    font-family:inherit;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink-faint);
+    padding:16px 0 14px;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease,border-color .15s ease;
+  }
+  .tabbtn.on{color:var(--ink);border-bottom-color:var(--teal);}
+  .tabbtn:hover{color:var(--ink);}
+
+  /* ---------- CONTENT ---------- */
+  .content{padding:34px 0 80px;}
+  .panel{display:none;}
+  .panel.on{display:block;}
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:4px;
+  }
+  .section-head h2{
+    font-size:21px;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .badge-tag{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11.5px;
+    font-weight:800;
+    letter-spacing:0.02em;
+    color:#fff;
+    background:var(--ink);
+    padding:3px 9px;
+    border-radius:6px;
+  }
+  .section-desc{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:6px 0 26px;
+    max-width:640px;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+  }
+  .search{flex:1;min-width:200px;}
+  .search input{
+    width:100%;
+    font-family:inherit;
+    font-size:14px;
+    padding:10px 14px;
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    background:var(--card);
+    color:var(--ink);
+  }
+  .search input:focus{outline:none;border-color:var(--teal);}
+  .chip-group{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{
+    font-family:inherit;font-size:12.5px;font-weight:600;
+    padding:7px 13px;border-radius:20px;
+    border:1px solid var(--line-strong);
+    background:var(--card);color:var(--ink-soft);cursor:pointer;
+    white-space:nowrap;
+  }
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  /* cards */
+  .card-list{display:flex;flex-direction:column;gap:12px;}
+  .rcard{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 20px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .rcard.flagged{border-style:dashed;border-color:var(--amber);}
+  .rcard-main{flex:1;min-width:0;}
+  .rcard-title-row{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-bottom:5px;
+  }
+  .rcard-title{font-size:15.5px;font-weight:700;}
+  .status-pill{
+    font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;
+  }
+  .status-pill.active{background:var(--teal-mist);color:var(--teal);}
+  .status-pill.hold{background:var(--amber-soft);color:var(--amber);}
+  .status-pill.done{background:var(--slate-soft);color:var(--slate);}
+  .status-pill.unk{background:#F2F2F2;color:var(--ink-faint);}
+  .rcard-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;max-width:680px;}
+  .rcard-meta{
+    margin-top:10px;
+    display:flex;gap:14px;align-items:center;
+    font-size:12px;color:var(--ink-faint);font-weight:600;
+  }
+  .rcard-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-faint);}
+  .rcard-side{
+    display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;
+  }
+  .openbtn{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:inherit;font-size:13px;font-weight:700;
+    color:var(--teal);
+    background:var(--teal-mist);
+    border:1px solid transparent;
+    padding:8px 14px;
+    border-radius:20px;
+    text-decoration:none;
+    white-space:nowrap;
+    cursor:default;
+  }
+  .hint{font-size:12.5px;color:var(--ink-faint);margin-top:22px;}
+
+  /* leaderboard */
+  .lb-row{
+    display:grid;
+    grid-template-columns:28px 150px 1fr 64px;
+    align-items:center;
+    gap:16px;
+    padding:12px 16px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:8px;
+    cursor:pointer;
+  }
+  .lb-rank{font-size:13px;font-weight:800;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
+  .lb-rank.g{color:var(--gold);}
+  .lb-name{font-size:14.5px;font-weight:700;}
+  .lb-bar-track{height:9px;background:var(--slate-soft);border-radius:5px;overflow:hidden;}
+  .lb-bar-fill{height:100%;background:var(--teal);border-radius:5px;}
+  .lb-row.top .lb-bar-fill{background:var(--gold);}
+  .lb-score{text-align:right;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .lb-detail{display:none;padding:4px 16px 14px;font-size:13px;color:var(--ink-soft);gap:24px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 10px 10px;margin-top:-14px;margin-bottom:8px;}
+  .lb-detail.open{display:flex;}
+  .lb-detail .metric b{color:var(--ink);font-weight:700;}
+  .lb-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:14px;}
+  .sort-group{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);}
+  select{font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);border:1px solid var(--line-strong);border-radius:8px;padding:7px 10px;background:var(--card);}
+  .methodology{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-faint);max-width:680px;}
+
+  @media (max-width:640px){
+    .hero h1{font-size:29px;}
+    .hero-stats{flex-wrap:wrap;row-gap:16px;}
+    .hstat{border-right:none;padding:0 20px 0 0;}
+    .rcard{flex-direction:column;}
+    .rcard-side{flex-direction:row;width:100%;justify-content:flex-end;}
+    .lb-row{grid-template-columns:22px 100px 1fr 46px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Support Quality Ops — 2026</div>
+    <h1>Quality &amp; Training Hub</h1>
+    <p class="tagline">Lamia's tracker</p>
+    <p class="lede">One place for every QA system, script, and reference file the team built — plus how the team scored in Q2.</p>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tabbar-inner" id="tabbarHost"></div>
+  </div>
+</div>
+
+<div class="wrap content">
+  <div id="panelsHost"></div>
+</div>
+
+<script>
+const TRACKER = [
+  {key:"qa", tag:"QA", group:"Support Quality — QA", desc:"Scoring forms, response logs, OKR feeds and reference docs the QA process runs on.", items:[
+    {n:1,name:"QA Support (Form)",type:"Google Form",status:"done",date:"—",notes:"The original form used for team auditing since day 1 (Scorecard vol.1). Superseded — the team now relies on the new QA Audit (Technical Support) form."},
+    {n:2,name:"QA Support (Responses)",type:"Google Sheet",status:"done",date:"8/16/2025",notes:"Core QA evaluation form responses covering support conversations, Nov 2024 to Sept 2026. Superseded — the team now relies on the New QA Scorecard (Technical Support) responses sheet."},
+    {n:3,name:"Team Auditing — Queue",type:"Google Form",status:"hold",date:"12/4/2026",notes:"Intake form for queue audit feedback (TL follow-up / team attitude / comment / insight). Not introduced officially; on hold due to AI."},
+    {n:4,name:"Team Auditing — Queue (Responses)",type:"Google Sheet",status:"hold",date:"4/5/2026",notes:"Response log for the audit form above — record of every observation with link and date."},
+    {n:5,name:"CSAT Deep-dive",type:"Google Sheet",status:"hold",date:"3/3/2026",notes:"Initiative for CSAT deep-dive with root cause and liability. Stopped, not continued this year."},
+    {n:6,name:"OKR update",type:"Google Sheet",status:"active",date:"8/16/2025",notes:"Quality numbers feeding the team OKR sheet — the main reference sheet."},
+    {n:7,name:"Daily–Monthly evaluation",type:"Google Form",status:"active",date:"—",notes:"Evaluation form used by the Team Lead and supervisor for daily operations."},
+    {n:8,name:"Daily–Monthly evaluation (Responses)",type:"Google Sheet",status:"active",date:"8/18/2025",notes:"Response log for the audit form above — record of every observation with link and date."},
+    {n:9,name:"Performance Tracking &amp; Analytics improvements",type:"Google Slides",status:"done",date:"8/6/2025",notes:"Proposed 8/6/2025 — most approved, except PMO Tracker, Coaching Tracking Sheet and Advanced Agent Performance Tracking. Remaining items (automation, new score system, dynamic sheets, filtering, MOM dashboard) are live."},
+    {n:10,name:"Training Session material",type:"Google Doc",status:"active",date:"8/31/2025",notes:"Training resource log for the team — Home Screen, Settings, Add Product, Category Management, Stock Count, Stock Operation, Inventory Transfer — with source links and assigned tasks."},
+    {n:11,name:"CS – QA Enhancements",type:"Google Doc",status:"active",date:"8/30/2025",notes:"Enhanced QA scoring attributes as requested — final version."},
+    {n:12,name:"Trainee Evaluation",type:"Google Sheet",status:"active",date:"8/31/2025",notes:"Day-to-day evaluation sheet for new hires based on performance."},
+    {n:13,name:"QA Audit — Technical Support",type:"Google Form",status:"active",date:"9/9/2026",notes:"New enhanced internal QA form scoring Technical Support agents across Tickets, Calls and Chat on Open.cx — tracks performance, flags critical errors, guides coaching."},
+    {n:14,name:"New QA Scorecard – Technical Support (Responses)",type:"Google Sheet",status:"active",date:"9/9/2026",notes:"New scorecard evaluation form responses covering support interactions in detail."},
+    {n:15,name:"Tools access – support team",type:"Google Sheet",status:"active",date:"9/2/2026",notes:"Follow-up tracker for each team member's access per tool."},
+    {n:16,name:"OKRs Overview",type:"Google Sheet",status:"active",date:"9/6/2026",notes:"OKRs for the quarter, split into agent view and month view."},
+    {n:17,name:"Rewaa Platform guide",type:"Google Doc",status:"active",date:"9/6/2026",notes:"Platform overview and knowledge bank."},
+    {n:18,name:"Workflow Ticket System",type:"—",status:"unk",date:"—",notes:"Entry incomplete in the source sheet — no type/status recorded yet.",flag:true},
+  ]},
+  {key:"ai", tag:"AI", group:"Open AI", desc:"Everything that keeps the Rewaa AI assistant and Open.cx knowledge base accurate.", items:[
+    {n:19,name:"AI PMO 2026",type:"Google Sheet",status:"active",date:"8/17/2025",notes:"Tracker of open/completed AI knowledge articles (Rewaa AI) with status and ETA per article. Includes hidden sheets for older documentation."},
+    {n:20,name:"AI Instructions Guide — OpenCX",type:"Google Doc",status:"done",date:"7/19/2025",notes:"Standards guide for modifying AI instructions (root cause analysis, no duplication, no contradiction) — bilingual EN/AR."},
+    {n:21,name:"Rewaa ↔ OpenCX",type:"Google Sheet",status:"active",date:"12/8/2026",notes:"Log of AI agent issues on Open.cx (knowledge / assignment / closure) with comments from the OpenCX team."},
+    {n:22,name:"Intercom – OpenCX Migration",type:"Google Doc",status:"active",date:"8/17/2025",notes:"Tracking remaining migration gaps from Intercom to Open.cx (company hierarchy, metrics, migration) with ETA per item. Requested reports added."},
+    {n:23,name:"دليل استخدام منصة Open.cx – Customer Success (Vol.6)",type:"PDF",status:"active",date:"9/9/2026",notes:"User guide for Open.cx (Customer Success) — availability status, inbox filters, Zoho CRM widget, Jira widget integration and creation, macros, conversation transfers, internal notes, mentions. Updated from Vol.5."},
+  ]},
+  {key:"hw", tag:"HW", group:"Hardware Guide", desc:"References for every hardware type the team supports, plus pricing.", items:[
+    {n:24,name:"Hardware Support Guide",type:"Google Doc",status:"done",date:"9/1/2026",notes:"Main support-team reference for all hardware types (Windows/Android POS, printers, barcode scanners…)."},
+    {n:25,name:"Hardware Support Chats Guide",type:"Google Sheet",status:"done",date:"9/7/2026",notes:"Step-by-step handling for each hardware contact scenario (shipping delays, missing shipments, SIM issues, waybills…)."},
+    {n:26,name:"Available hardware prices",type:"Google Doc",status:"done",date:"8/30/2026",notes:"Added after the new rule that support agents issue invoices for hardware. Prices updated after a 50% addition."},
+  ]},
+  {key:"cc", tag:"CC", group:"Customer Communication Guide", desc:"Brand-voice guides, canned responses and the macro request pipeline.", items:[
+    {n:27,name:"Mobily SIM card guide",type:"Google Doc",status:"active",date:"8/18/2026",notes:"Following the switch of the free-internet SIM provider for Mazaya customers from STC. Covers activation, device scenarios and key FAQs."},
+    {n:28,name:"Customer Communication Guide (Technical Support)",type:"Google Doc",status:"active",date:"8/3/2026",notes:"Unifies Rewaa's brand image with customers, enhances professional communication, accurate resolution and SOP compliance toward quarterly goals."},
+    {n:29,name:"Canned responses",type:"Google Sheet",status:"active",date:"8/3/2026",notes:"Built with Khadija to reduce repetitive, unverified replies from the team."},
+    {n:30,name:"Macros / help-center edit requests",type:"Google Form",status:"active",date:"—",notes:"Intake for macro creation, article edits and macro updates. If Khadija is off, macros are created/edited directly and she's informed."},
+    {n:31,name:"SOP portal update",type:"—",status:"hold",date:"—",notes:"Updating SOPs on Slack to be reflected on the portal."},
+  ]},
+  {key:"en", tag:"EN", group:"English Support Assessment Pack", desc:"The standalone English phone-readiness assessment built for the team.", items:[
+    {n:32,name:"English Support Assessment Pack (Dashboard)",type:"HTML Artifact",status:"done",date:"8/16/2025",notes:"Downloaded from Google Drive; saved as a Claude artifact for viewing."},
+  ]},
+];
+
+const LEADERBOARD = [
+  {rank:1,name:"Muhannad Almathlum",conv:2155,calls:1876,csat:94.1,convS:100.0,callsS:100.0,csatS:78.6,composite:92.86},
+  {rank:2,name:"Sultan Al-Anazi",conv:2154,calls:1707,csat:93.2,convS:99.9,callsS:89.8,csatS:73.6,composite:87.80},
+  {rank:3,name:"Asmaa Ahmed",conv:1938,calls:1314,csat:92.6,convS:85.0,callsS:66.2,csatS:70.3,composite:83.84},
+  {rank:4,name:"Hemat Mostafa",conv:1698,calls:1872,csat:89.3,convS:68.4,callsS:99.8,csatS:52.2,composite:73.44},
+  {rank:5,name:"Marwa Amin",conv:1915,calls:1207,csat:93.7,convS:83.4,callsS:59.8,csatS:76.4,composite:73.18},
+  {rank:6,name:"Ahmad Alamouri",conv:1781,calls:1185,csat:94.7,convS:74.1,callsS:58.5,csatS:81.9,composite:71.48},
+  {rank:7,name:"Eisa Alanzi",conv:1941,calls:1384,csat:89.8,convS:85.2,callsS:70.4,csatS:54.9,composite:70.19},
+  {rank:8,name:"Kholoud Khaled",conv:1892,calls:1358,csat:88.6,convS:81.8,callsS:68.9,csatS:48.4,composite:66.34},
+  {rank:9,name:"Abdullah Ahmed",conv:1449,calls:728,csat:98.0,convS:51.1,callsS:31.0,csatS:100.0,composite:60.71},
+  {rank:10,name:"Yahia Eltantawy",conv:1698,calls:989,csat:89.4,convS:68.4,callsS:46.7,csatS:52.7,composite:55.93},
+  {rank:11,name:"Shaima Ahmad",conv:1371,calls:1282,csat:88.2,convS:45.7,callsS:64.3,csatS:46.2,composite:52.05},
+  {rank:12,name:"Zaid Alkilani",conv:1329,calls:1033,csat:88.8,convS:42.8,callsS:49.3,csatS:49.5,composite:47.20},
+  {rank:13,name:"Esraa Tarek",conv:784,calls:396,csat:92.4,convS:5.1,callsS:11.1,csatS:69.2,composite:28.45},
+  {rank:14,name:"Roaa Alborini",conv:769,calls:964,csat:83.0,convS:4.0,callsS:45.2,csatS:17.6,composite:22.26},
+  {rank:15,name:"Yazan Al Sayyed",conv:711,calls:778,csat:79.8,convS:0.0,callsS:34.0,csatS:0.0,composite:11.34},
+  {rank:16,name:"Abrar Alahmed",conv:779,calls:212,csat:80.1,convS:4.7,callsS:0.0,csatS:1.6,composite:2.12},
+];
+
+const STATUS_LABEL = {active:"Active",hold:"On hold",done:"Completed",unk:"Unspecified"};
+
+function allItems(){ return TRACKER.flatMap(g => g.items.map(i => ({...i, group:g.group}))); }
+
+function parseDate(str){
+  if(!str || str==="—") return -Infinity;
+  const parts = str.split("/");
+  if(parts.length!==3) return -Infinity;
+  const m = parseInt(parts[0],10), d = parseInt(parts[1],10), y = parseInt(parts[2],10);
+  if(isNaN(m)||isNaN(d)||isNaN(y)) return -Infinity;
+  return new Date(y,m-1,d).getTime();
+}
+
+function sortedItems(items){
+  return [...items].sort((a,b)=> parseDate(b.date) - parseDate(a.date));
+}
+
+function renderHeroStats(){
+  const items = allItems();
+  const counts = {active:0,hold:0,done:0,unk:0};
+  items.forEach(i => counts[i.status]++);
+  document.getElementById("heroStats").innerHTML = `
+    <div class="hstat"><div class="num">${items.length}</div><div class="label">Files tracked</div></div>
+    <div class="hstat"><div class="num">${counts.active}</div><div class="label">Active / ongoing</div></div>
+    <div class="hstat"><div class="num">${counts.hold}</div><div class="label">On hold</div></div>
+    <div class="hstat"><div class="num">${TRACKER.length}</div><div class="label">Workstreams</div></div>
+    <div class="hstat"><div class="num">16</div><div class="label">Agents scored (Q2)</div></div>
+  `;
+}
+
+let activeTab = "qa";
+const filterState = {}; // per-tab {status, search}
+TRACKER.forEach(g => filterState[g.key] = {status:"all", search:""});
+
+function renderTabs(){
+  const host = document.getElementById("tabbarHost");
+  const tabs = TRACKER.map(g => `<button class="tabbtn ${activeTab===g.key?'on':''}" data-tab="${g.key}">${g.group}</button>`).join("");
+  host.innerHTML = tabs + `<button class="tabbtn ${activeTab==='lb'?'on':''}" data-tab="lb">Q2 Leaderboard</button>`;
+  host.querySelectorAll(".tabbtn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      activeTab = btn.dataset.tab;
+      renderTabs();
+      renderPanels();
+    });
+  });
+}
+
+function renderPanels(){
+  const host = document.getElementById("panelsHost");
+  if(activeTab === "lb"){
+    host.innerHTML = leaderboardPanelHTML();
+    wireLeaderboard();
+    return;
+  }
+  const g = TRACKER.find(t => t.key === activeTab);
+  const st = filterState[g.key];
+  const items = sortedItems(g.items).filter(i=>{
+    const statusOk = st.status==="all" || i.status===st.status;
+    const q = st.search.trim().toLowerCase();
+    const searchOk = !q || i.name.toLowerCase().includes(q) || i.notes.toLowerCase().includes(q);
+    return statusOk && searchOk;
+  });
+  const counts = {all:g.items.length,active:0,hold:0,done:0};
+  g.items.forEach(i=>{ if(counts[i.status]!==undefined) counts[i.status]++; });
+  const chipDefs = [["all","All"],["active","Active"],["hold","On hold"],["done","Completed"]];
+
+  host.innerHTML = `
+    <div class="section-head"><span class="badge-tag">${g.tag}</span><h2>${g.group}</h2></div>
+    <p class="section-desc">${g.desc}</p>
+    <div class="controls">
+      <div class="search"><input type="text" id="searchInput" placeholder="Search this workstream…" value="${st.search}"></div>
+      <div class="chip-group" id="chipGroup">
+        ${chipDefs.map(([k,l])=>`<button class="chip ${st.status===k?'on':''}" data-status="${k}">${l} · ${counts[k]}</button>`).join("")}
+      </div>
+    </div>
+    <div class="card-list">
+      ${items.map(i => `
+        <div class="rcard ${i.flag?'flagged':''}">
+          <div class="rcard-main">
+            <div class="rcard-title-row">
+              <span class="rcard-title">${i.name}</span>
+              <span class="status-pill ${i.status}">${STATUS_LABEL[i.status]}</span>
+            </div>
+            <div class="rcard-desc">${i.notes}</div>
+            <div class="rcard-meta"><span>${i.type}</span><span class="dot"></span><span>Updated ${i.date}</span></div>
+          </div>
+          <div class="rcard-side">
+            <span class="openbtn">Open ↗</span>
+          </div>
+        </div>
+      `).join("") || `<p class="hint">No files match this filter.</p>`}
+    </div>
+    <p class="hint">Source links point back to “Open” cells in the original sheet — the export didn’t carry the underlying URLs, so open the master tracker to follow a specific link.</p>
+  `;
+
+  document.getElementById("searchInput").addEventListener("input", e=>{
+    st.search = e.target.value;
+    renderPanels();
+    document.getElementById("searchInput").focus();
+    const val = document.getElementById("searchInput").value;
+    document.getElementById("searchInput").setSelectionRange(val.length, val.length);
+  });
+  document.getElementById("chipGroup").querySelectorAll(".chip").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      st.status = btn.dataset.status;
+      renderPanels();
+    });
+  });
+}
+
+let lbSort = "composite";
+function scoreFor(sortKey, row){
+  if(sortKey==="composite") return row.composite;
+  if(sortKey==="conv") return row.conv;
+  if(sortKey==="calls") return row.calls;
+  if(sortKey==="csat") return row.csat;
+}
+function leaderboardPanelHTML(){
+  return `
+    <div class="lb-head">
+      <div>
+        <div class="section-head"><span class="badge-tag">Q2</span><h2>Top Support Agents — Q2 2026 (Apr–Jun)</h2></div>
+        <p class="section-desc" style="margin-top:6px;">Composite score blends conversations replied to, calls answered, and CSAT — each normalized 0–100 across the 16-agent team, then averaged equally.</p>
+      </div>
+      <div class="sort-group">
+        Sort by
+        <select id="sortSelect">
+          <option value="composite" ${lbSort==='composite'?'selected':''}>Composite score</option>
+          <option value="conv" ${lbSort==='conv'?'selected':''}>Conversations</option>
+          <option value="calls" ${lbSort==='calls'?'selected':''}>Calls answered</option>
+          <option value="csat" ${lbSort==='csat'?'selected':''}>CSAT %</option>
+        </select>
+      </div>
+    </div>
+    <div id="lbHost"></div>
+    <p class="methodology">Composite score = equal-weighted average (⅓ each) of Conversations Replied To, Calls Answered, and CSAT, each min–max normalized 0–100 across the 16 agents. Source: “Q2 raw data” sheet (Intercom + 3CX exports). Click a row to see the underlying numbers.</p>
+  `;
+}
+function wireLeaderboard(){
+  document.getElementById("sortSelect").addEventListener("change", e=>{
+    lbSort = e.target.value;
+    renderLeaderboardRows();
+  });
+  renderLeaderboardRows();
+}
+function renderLeaderboardRows(){
+  const maxVal = Math.max(...LEADERBOARD.map(r=>scoreFor(lbSort,r)));
+  const sorted = [...LEADERBOARD].sort((a,b)=>scoreFor(lbSort,b)-scoreFor(lbSort,a));
+  const host = document.getElementById("lbHost");
+  host.innerHTML = "";
+  sorted.forEach((r, idx)=>{
+    const pct = (scoreFor(lbSort,r)/maxVal*100).toFixed(1);
+    const display = lbSort==="csat" ? r.csat.toFixed(1)+"%" :
+                     lbSort==="composite" ? r.composite.toFixed(2) :
+                     scoreFor(lbSort,r);
+    const row = document.createElement("div");
+    row.className = "lb-row" + (idx<3?" top":"");
+    row.innerHTML = `
+      <div class="lb-rank ${idx<3?'g':''}">${idx+1}</div>
+      <div class="lb-name">${r.name}</div>
+      <div class="lb-bar-track"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
+      <div class="lb-score">${display}</div>
+    `;
+    const detail = document.createElement("div");
+    detail.className = "lb-detail";
+    detail.innerHTML = `
+      <div class="metric">Conversations: <b>${r.conv}</b> (score ${r.convS})</div>
+      <div class="metric">Calls answered: <b>${r.calls}</b> (score ${r.callsS})</div>
+      <div class="metric">CSAT: <b>${r.csat.toFixed(1)}%</b> (score ${r.csatS})</div>
+      <div class="metric">Composite: <b>${r.composite.toFixed(2)}</b></div>
+    `;
+    row.addEventListener("click", ()=> detail.classList.toggle("open"));
+    host.appendChild(row);
+    host.appendChild(detail);
+  });
+}
+
+renderHeroStats();
+renderTabs();
+renderPanels();
+</script>
+</body>
+</html>
